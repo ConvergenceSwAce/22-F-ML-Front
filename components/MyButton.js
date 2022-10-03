@@ -50,10 +50,11 @@ const MyButton = (props) => {
       onPress={() => {
         if (props.name === '횡단보도 상황 안내') {
           // playSound();
+          Speech.stop();
           Speech.speak("test")
         } else {
           Speech.stop();
-          Speech.speak("안녕하세요")
+          Speech.speak("안내를 종료합니다")
           // playSound();
         }
         Vibration.vibrate(PATTERN[0]);
