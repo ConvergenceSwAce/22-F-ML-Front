@@ -7,8 +7,9 @@ const MyButton = (props) => {
       style={{
         backgroundColor: '#071D49',
         width: '100%',
-        height: '45%',
-        marginTop: '5%',
+        height: '50%',
+        marginTop: '0.5%',
+        marginBottom: '0.5%',
         justifyContent: 'center',
         alignItems: 'center',
       }}
