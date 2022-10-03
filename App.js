@@ -5,12 +5,14 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import MyButton from './components/MyButton';
-import LendingPage from './components/LendingPage';
+import * as Speech from 'expo-speech';
 
 const App = () => {
+  const alram = "핸드폰 화면의 가운데를 기준으로 위를 누르면 안내가 시작되고 아래를 누르면 종료됩니다.";
   const [appIsReady, setAppIsReady] = useState(false);
 
   useEffect(() => {
+    Speech.speak(alram)
     async function prepare() {
       try {
         // Pre-load fonts, make any API calls you need to do here
@@ -32,7 +34,6 @@ const App = () => {
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
-      <LendingPage />;
     }
   }, [appIsReady]);
 
