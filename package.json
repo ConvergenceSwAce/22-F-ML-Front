@@ -11,6 +11,7 @@
   "dependencies": {
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
+    "axios": "^0.27.2",
     "expo": "~46.0.13",
     "expo-app-loading": "~2.1.0",
     "expo-av": "~12.0.4",
@@ -18,8 +19,11 @@
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "link": "^1.5.1",
+    "lottie-ios": "3.2.3",
+    "lottie-react-native": "^5.1.4",
     "react": "18.0.0",
     "react-native": "^0.69.6",
+    "react-native-splash-screen": "^3.3.0",
     "tailwindcss-react-native": "^1.7.10"
   },
   "devDependencies": {
