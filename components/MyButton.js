@@ -78,8 +78,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#5156f6',
     width: SCREEN_WIDTH,
     flex: 1,
-    marginTop: '0.5%',
-    marginBottom: '0.5%',
     justifyContent: 'center',
     alignItems: 'center',
   },
