@@ -10,6 +10,10 @@ import * as Speech from 'expo-speech';
 import axios from 'axios';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const flag = {
+  isPause: true,
+  loop: null,
+};
 
 const MyButton = () => {
   const HUNDRED_MS = 250;
@@ -17,44 +21,44 @@ const MyButton = () => {
   const btnName = ['횡단보도 상황 안내', '안내 종료'];
   const [num, setNum] = useState(0);
   const [text, setText] = useState('');
-  const [flag, setFlag] = useState(false);
-  let loop;
 
   useEffect(() => {
-    if (flag) {
-      clearInterval(loop);
-    } else {
-      Speech.speak(text);
-    }
+    Speech.speak(text);
   }, [text]);
 
   const Resdata = () => {
-    axios
-      .get('http://192.168.235.76:5001/api/notification')
-      .then((res) => {
-        setText(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!flag.isPause) {
+      axios
+        .get('http://192.168.0.8:5001/api/notification')
+        .then((res) => {
+          setText(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      clearInterval(flag.loop);
+    }
   };
 
   const start = () => {
-    console.log(flag + 'start');
+    console.log(flag.isPause);
     setNum(1);
-    setFlag(false);
     Speech.stop();
     Speech.speak('안내를 시작합니다');
-    loop = setInterval(() => Resdata(), 2000);
+    flag.isPause = false;
+    flag.loop = setInterval(function () {
+      Resdata();
+    }, 2000);
   };
 
   const stop = () => {
-    console.log(flag + 'stop');
+    console.log(flag.isPause);
     setNum(0);
-    setFlag(true);
     Speech.stop();
     Speech.speak('안내를 종료합니다');
-    clearInterval(loop);
+    flag.isPause = true;
+    clearInterval(flag.loop);
   };
 
   return (
